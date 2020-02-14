@@ -2,15 +2,22 @@
 #include <unistd.h>
 
 int main() {
-	int x = 1, y=2;
+	int x = 512, y=513;
 	x = fork();
+	
+	if (x ==0) {
+		printf("x = %d\n", x);
+		printf("y = %d\n", y);
+		int pid = getpid();
+		printf("I am process: %d\n", pid);
+	}
+
 	y = fork();
-
-	if (x!=0) printf("Type 1\n");
-	if (y!=0) printf("Type 2\n");
-
-	if (x>0 || y>0) printf("Type 3\n");
-	if (x==0 && y==0) printf("Type 4\n");
-	if (x!=0 && y!=0) printf("Type 5\n");
+	if (y ==0) {
+		printf("x = %d\n", x);
+		printf("y = %d\n", y);
+		int pid = getpid();
+		printf("I am process: %d\n", pid);
+	}
 	return 0;
 }
